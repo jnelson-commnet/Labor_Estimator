@@ -1,0 +1,13 @@
+select mo.num as "MO",
+        part.num as "Part",
+        moitem.qtyfulfilled as "QtyFulf",
+        moitemstatus.name as "Status",
+        bomitemtype.name as "Type"
+
+from moitem
+    left join mo on moitem.moid = mo.id
+    left join part on moitem.partid = part.id
+    left join moitemstatus on moitem.statusid = moitemstatus.id
+    left join bomitemtype on moitem.typeid = bomitemtype.id
+
+where bomitemtype.name = "Finished Good"
